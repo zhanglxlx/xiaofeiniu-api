@@ -19,7 +19,7 @@ CREATE TABLE xfn_settings(
     sid INT PRIMARY key AUTO_INCREMENT,
     appName VARCHAR(32),
     apiUrl VARCHAR(64),
-    adminUrl VARCHAR(64)
+    adminUrl VARCHAR(64),
     appUrl VARCHAR(64),
     icp VARCHAR(64),
     copright VARCHAR(128)
@@ -101,7 +101,7 @@ CREATE TABLE xfn_dish(
   price DECIMAL(6,2),
   detail VARCHAR(128),
   categoryId INT,
-  FOREIGN KEY(categoryId) REFERENCES xfn_category(cid)
+  FOREIGN KEY(categoryId) REFERENCES xfn_category(cid)  /*外键约束*/
 );
 INSERT INTO xfn_dish VALUES
 (NULL, '草鱼片', 'r9470.jpg', '35', '选鲜活草鱼，切出鱼片冷鲜保存。锅开后再煮1分钟左右即可食用', '1'),
