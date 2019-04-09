@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="bt1">获取所有菜品类别</button>
+    <br>
+    <button id="bt2">删除菜品类别</button>
+    <br>
+    <button id="bt3">添加新的菜品类别</button>
+    <br>
+    <button id="bt4">修改菜品类别</button>
+    <br>
+    <script src="./axios.min.js"></script>
+    <!--这种方式只能是get-->
+    <!--<script src="http://127.0.0.1:8090/admin/category"></script>-->
+    <script>
+    // function doData(list){
+    //
+    //  }
+        bt1.onclick=function(){
+            axios.get("http://127.0.0.1:8090/admin/category").then((result)=>{
+                console.log("获取菜品类别成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        bt2.onclick=function(){
+            //put/delete 请求之前浏览器会先提交一个
+            //预取请求--preflight  request
+            //请求方法为 options 目的是询问服务器是否支持接下来得请求方法
+            axios.delete("http://127.0.0.1:8090/admin/category/6").then((result)=>{
+                console.log("删除类别执行成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt3.onclick=function(){
+            var data={cname:"菌菇类"};
+            axios.post("http://127.0.0.1:8090/admin/category",data).then((result)=>{
+                console.log("添加新的类别执行成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt4.onclick=function(){
+            var data={cid:7,cname:"蔬菜类"};
+            axios.put("http://127.0.0.1:8090/admin/category",data).then((result)=>{
+                console.log("添加新的类别执行成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+    </script>
+</body>
+</html>
+
