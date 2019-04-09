@@ -31,9 +31,27 @@
         bt2.onclick=function(){
             //put/delete 请求之前浏览器会先提交一个
             //预取请求--preflight  request
-            //请求方法为 options 目的时候询问服务器是否支持接下来得请求方法
+            //请求方法为 options 目的是询问服务器是否支持接下来得请求方法
             axios.delete("http://127.0.0.1:8090/admin/category/6").then((result)=>{
                 console.log("删除类别执行成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt3.onclick=function(){
+            var data={cname:"菌菇类"};
+            axios.post("http://127.0.0.1:8090/admin/category",data).then((result)=>{
+                console.log("添加新的类别执行成功")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        bt4.onclick=function(){
+            var data={cid:7,cname:"蔬菜类"};
+            axios.put("http://127.0.0.1:8090/admin/category",data).then((result)=>{
+                console.log("添加新的类别执行成功")
                 console.log(result.data);
             }).catch((err)=>{
                 console.log(err);
