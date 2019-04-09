@@ -6,7 +6,10 @@
 const pool=require("../../pool");
 var router=express.Router();
 
+<<<<<<< HEAD
 module.exports=router;
+=======
+>>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
 /**查询菜品
  * API ：GET /admin/category  获取数据
  * 含义：客户端获取所有的彩品类别,按编号升序排列
@@ -73,7 +76,11 @@ router.post("/",(req,res)=>{
  */
 router.put("/",(req,res)=>{
     //todo此处可以对数据进行验证
+<<<<<<< HEAD
     pool.query("UPDATE  xfn_category SET ? WHERE cid=?",[req.body,req.body.cid],(err,result)=>{
+=======
+    pool.query("UPDATE xfn_category SET ? WHERE cid=?",[req.body,req.body.cid],(err,result)=>{
+>>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
         //注意此处SQL语句的简写
         if(err){throw err};
         if(result.changedRows>0){  //实际更新了一行
@@ -84,4 +91,10 @@ router.put("/",(req,res)=>{
             res.send({code:401,msg:"no category modified"})
         }
     })
+<<<<<<< HEAD
 })
+=======
+})
+
+module.exports=router;
+>>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
