@@ -4,23 +4,14 @@
 const express=require("express");
 const pool=require("../../pool");
 var router=express.Router();
-<<<<<<< HEAD
-/**get 请求可以有主体吗？
- * API:get /admin/login
- * 请求数据 {aname:"xxx",apwd:"123456"}
- * 完成用户登录验证
-=======
-
 /**get 请求可以有主体吗？
  * API:GET /admin/login/:aname/:apwd
  * 请求数据 {aname:"xxx",apwd:"123456"}
  * 完成用户登录验证(有的项目情景下，有的会选择POST请求)
->>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
  * 返回数据：
  * {code:200,msg:"login  success"}
  * {code:400,msg:"aname or apwd err"}
  */
-<<<<<<< HEAD
 router.get("/login",(req,res)=>{
     pool.query("SELECT * FROM xfn_admin WHERE aname=? AND apwd=?",[req.body.aname,req.body.apwd],(err,result)=>{
         if(err) {throw err};

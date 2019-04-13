@@ -5,29 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-<<<<<<< HEAD
-    <button id="bt1">管理员登录</button>
-    <br>
-=======
     <button id="bt1">post 管理员登录</button>
     <br>
      <button id="bt3">get 管理员登录</button>
      <br>   
->>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
     <button id="bt2">修改管理员密码</button>
     <br>
     <script src="./axios.min.js"></script>
     <script>
         bt1.onclick=function(){
-<<<<<<< HEAD
-            var data={aname:"admin",apwd:"123456"}
-            axios.get("http://127.0.0.1:8090/admin/login",data).then((result)=>{
-                console.log("登录成功")
-=======
             var data={aname:"admin",apwd:"123456"};
             axios.post("http://127.0.0.1:8090/admin/admin/login",data).then((result)=>{
                 console.log("登录成功!结果为：");
->>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
                 console.log(result.data);
             }).catch((err)=>{
                 console.log(err)
@@ -38,8 +27,6 @@
                 console.log("登录成功!结果为：");
                 console.log(result.data);
             }).catch((err)=>{
-<<<<<<< HEAD
-=======
                 console.log(err)
             })
         }
@@ -52,7 +39,6 @@
                 console.log("修改密码执行成功");
                 console.log(result.data);
             }).catch((err)=>{
->>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
                 console.log(err);
             })
         }

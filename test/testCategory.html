@@ -17,9 +17,6 @@
     <!--这种方式只能是get-->
     <!--<script src="http://127.0.0.1:8090/admin/category"></script>-->
     <script>
-    // function doData(list){
-    //
-    //  }
         bt1.onclick=function(){
             axios.get("http://127.0.0.1:8090/admin/category").then((result)=>{
                 console.log("获取菜品类别成功")
