@@ -32,7 +32,7 @@ router.get("/login",(req,res)=>{
  * {code:200,msg:"modified succ"}
  * {code:400,msg:"aname or apwd err"}
  */
-=======
+
 // post登录
 router.post("/login",(req,res)=>{
     var aname=req.body.aname;
@@ -49,7 +49,7 @@ router.post("/login",(req,res)=>{
     })
 })
 // get 登录
-router.post("/login/:aname/:apwd",(req,res)=>{
+router.get("/login/:aname/:apwd",(req,res)=>{
     var aname=req.params.aname;
     var apwd=req.params.apwd;
     //需要对用户输入的密码执行进项加密函数
@@ -92,11 +92,11 @@ router.patch("/",(req,res)=>{
                 if(result.affectedRows>0){
                     res.send({code:200,msg:"modified succ"});
                 }else{
-                    res.send({code:400,msg:"Pwd not modified"});
+                    res.send({code:401,msg:"Pwd not modified"});
                 }
          })
     })
    
 })
->>>>>>> 26ee5f00b2a942044ccf1ad4e7989d9e39717237
+
 module.exports=router;

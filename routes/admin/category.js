@@ -70,19 +70,20 @@ router.post("/",(req,res)=>{
  * 返回值：{code:400,msg:"0 category modified ，not exists"} 类别不存在
  * 返回值：{code:401,msg:"0 category modified no modification"} 修改的名字和以前是一样的
  */
-router.put("/",(req,res)=>{
-    //todo此处可以对数据进行验证
-    pool.query("UPDATE xfn_category SET ? WHERE cid=?",[req.body,req.body.cid],(err,result)=>{
-        //注意此处SQL语句的简写
-        if(err){throw err};
-        if(result.changedRows>0){  //实际更新了一行
-            res.send({code:200,msg:"1 category modified"})
-        }else  if(result.affectedRows==0){
-            res.send({code:400,msg:"category not exists "})
-        }else if(result.affectedRows==0&&result.affectedRows==0){ //
-            res.send({code:401,msg:"no category modified"})
-        }
+router.put('/', (req, res)=>{
+    var data = req.body; //请求数据{cid:xx, cname:'xx'}
+    //TODO: 此处可以对数据数据进行验证
+    pool.query('UPDATE xfn_category SET ? WHERE cid=?', [data, data.cid], (err, result)=>{
+      if(err)throw err;
+      if(result.changedRows>0){  //实际修改了一行
+        res.send({code:200, msg: '1 category modified'})
+      }else if(result.affectedRows==0){  //影响到0行
+        res.send({code:400, msg:'category not exits'})
+      }else if(result.affectedRows==1 && result.changedRows==0){ //影响到1行，但修改了0行——新值与旧值完全一样
+        res.send({code:401, msg:'no category modified'})
+      }
     })
-})
+  })
+  
 
 module.exports=router;

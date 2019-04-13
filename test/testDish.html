@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="bt1">获取所有菜品</button>
+    <br>
+    <button id="bt2">获取每一道菜品</button>
+    <br>
+    <hr>
+    <input type="text" id="inputDesc">菜品描述 <br>
+    <input type="file" id="inputFile">选择文件 <br>
+    <button id="bt3">异步上传菜品图片菜品</button>
+    <br>
+    <hr>
+
+    <button id="bt4">添加新的菜品</button>
+    <br>
+    <button id="bt5">删除菜品</button>
+    <br>
+    <button id="bt6">修改菜品</button>
+    <br>
+    <script src="./axios.min.js"></script>
+    <script>
+         bt1.onclick=function(){
+            axios.get("http://127.0.0.1:8090/admin/dish").then((result)=>{
+                console.log("获取菜品成功");
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+         bt3.onclick=function(){
+             //异步上传文件
+             //手工创建一个multipart/form-data 形式的请求主体
+             var data=new FormData();
+             //向请求主体中追加要提交的数据
+             data.append('description',inputDesc.value);
+             //向请求主体中追加用户选中的文件
+            //console.dir(inputFile.files);
+            data.append("dishImg",inputFile.files[0]);
+            axios.post("http://127.0.0.1:8090/admin/dish/image",data).then((result)=>{
+                console.log("上传菜品照片成功");
+                console.log(JSON.stringify(result.data));
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        bt4.onclick=function () {
+            var data={
+                title:"小烧饼",
+                imgUrl:"1234567.jpg",
+                price:25,
+                detail:"小烧饼的详情介绍",
+                categoryId:3
+            }
+            axios.post("http://127.0.0.1:8090/admin/dish",data).then((result)=>{
+                console.log(result.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+    </script>
+
+    <hr>
+    <h3>同步文件上传</h3>
+    <!--multipart 文件上传-->
+    <form action="http://127.0.0.1:8090/admin/dish/image" method="POST" enctype="multipart/form-data">
+        <input type="file" name="dishImg">
+        <br>
+        图片标题：<input type="text" name="title">
+        <br>
+        <input type="submit">
+        <hr>
+        <input tyep="file" name="dishImg">
+        <br>
+        图片标题：<input type="text" name="title">
+        <input type="submit">
+    </form>
+</body>
+</html>
+

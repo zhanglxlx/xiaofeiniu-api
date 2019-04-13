@@ -23,7 +23,7 @@
             })
         }
          bt3.onclick=function(){
-            axios.post("http://127.0.0.1:8090/admin/admin/login/admin/123456").then((result)=>{
+            axios.get("http://127.0.0.1:8090/admin/admin/login/admin/123456").then((result)=>{
                 console.log("登录成功!结果为：");
                 console.log(result.data);
             }).catch((err)=>{

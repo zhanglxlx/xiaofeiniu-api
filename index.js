@@ -8,8 +8,12 @@ const express=require("express");
 const  cors=require("cors");
 // 中间件 获取post请求的数据
 const bodyParser=require("body-parser");
+
+
+
 const categoryRoutes=require("./routes/admin/category");
 const adminRoutes=require("./routes/admin/admin");
+const dishRoutes=require("./routes/admin/dish");
 
 //启动主服务器  创建http应用服务器
 var app=express();
@@ -23,3 +27,4 @@ app.use(cors());
 
 app.use('/admin/category',categoryRoutes);
 app.use('/admin/admin',adminRoutes);
+app.use('/admin/dish',dishRoutes);
