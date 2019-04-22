@@ -44,7 +44,6 @@ router.post("/login",(req,res)=>{
     //需要对用户输入的密码执行进项加密函数
     pool.query("SELECT aid FROM xfn_admin WHERE aname=? AND apwd=PASSWORD(?)",[aname,apwd],(err,result)=>{
         if(err) {throw err};
-        console.log(result);
         if(result.length>0){//查询到一行数据，登录成功
             res.send({code:200,msg:"login success"})
         }else{//没有查询到数据
