@@ -32,3 +32,5 @@ app.use('/admin/admin',adminRoutes);
 app.use('/admin/dish',dishRoutes);
 app.use('/admin/settings',settingsRoutes);
 app.use('/admin/table',tableRoutes);
+// 挂载顾客App  必需的路由器
+//app.use('/dish',dishRoutes);

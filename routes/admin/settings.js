@@ -16,7 +16,7 @@ router.get("/",(req,res)=>{
         res.send(result[0]);
     })
 })
-/**
+/**0
  * put /admin/settings
  * 请求数据：{appName:"xx":adminUrl:"xxx",appurl:"xxx",....}
  * 修改所有信息的全局设置信息

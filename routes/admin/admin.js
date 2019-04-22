@@ -64,8 +64,8 @@ router.post("/login",(req,res)=>{
 
 router.patch("/",(req,res)=>{
     var data=req.body;
-    console.log(data.aname);
-    console.log(data.oldPwd);
+    // console.log(data.aname);
+    // console.log(data.oldPwd);
     //首先根据aname和oldpwd查询该用户是否存在
     pool.query("SELECT aid FROM xfn_admin WHERE aname=? AND apwd=PASSWORD(?)",[data.aname,data.oldPwd],(err,result)=>{
         if(err) {throw err};
@@ -77,7 +77,7 @@ router.patch("/",(req,res)=>{
         }
         pool.query("UPDATE xfn_admin SET apwd=PASSWORD(?) WHERE aname=?",[data.newPwd,data.aname],(err,result)=>{
                 if(err) {throw err};
-                console.log(result);
+                // console.log(result);
                 if(result.affectedRows>0){
                     res.send({code:200,msg:"modified succ"});
                 }else{
