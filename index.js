@@ -28,3 +28,5 @@ app.use(cors());
 app.use('/admin/category',categoryRoutes);
 app.use('/admin/admin',adminRoutes);
 app.use('/admin/dish',dishRoutes);
+app.use('/admin/settings',settingsRoutes);
+app.use('/admin/table',tableRoutes);
