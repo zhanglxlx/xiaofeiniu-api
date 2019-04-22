@@ -12,18 +12,22 @@ var router=express.Router();
  * {code:200,msg:"login  success"}
  * {code:400,msg:"aname or apwd err"}
  */
-router.get("/login",(req,res)=>{
-    pool.query("SELECT * FROM xfn_admin WHERE aname=? AND apwd=?",[req.body.aname,req.body.apwd],(err,result)=>{
+
+// get 登录
+router.get("/login/:aname/:apwd",(req,res)=>{
+    var aname=req.params.aname;
+    var apwd=req.params.apwd;
+    //需要对用户输入的密码执行进项加密函数
+    pool.query("SELECT aid FROM xfn_admin WHERE aname=? AND apwd=PASSWORD(?)",[aname,apwd],(err,result)=>{
         if(err) {throw err};
-        if(result.affectedRows>0){
+        console.log(result);
+        if(result.length>0){//查询到一行数据，登录成功
             res.send({code:200,msg:"login success"})
-        }else{
+        }else{//没有查询到数据
             res.send({code:400,msg:"aname or apwd err"})
         }
     })
-    console.log(1);
 })
-
 /**get 请求可以有主体吗？
  * API:PATCH /admin/login
  * 请求数据 {aname:"xxx",apwd:"123456"}
@@ -48,21 +52,7 @@ router.post("/login",(req,res)=>{
         }
     })
 })
-// get 登录
-router.get("/login/:aname/:apwd",(req,res)=>{
-    var aname=req.params.aname;
-    var apwd=req.params.apwd;
-    //需要对用户输入的密码执行进项加密函数
-    pool.query("SELECT aid FROM xfn_admin WHERE aname=? AND apwd=PASSWORD(?)",[aname,apwd],(err,result)=>{
-        if(err) {throw err};
-        console.log(result);
-        if(result.length>0){//查询到一行数据，登录成功
-            res.send({code:200,msg:"login success"})
-        }else{//没有查询到数据
-            res.send({code:400,msg:"aname or apwd err"})
-        }
-    })
-})
+
 
 /**
  * API:PATCH /admin/login 修改部分数据用patch 

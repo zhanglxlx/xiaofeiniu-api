@@ -14,6 +14,8 @@ const bodyParser=require("body-parser");
 const categoryRoutes=require("./routes/admin/category");
 const adminRoutes=require("./routes/admin/admin");
 const dishRoutes=require("./routes/admin/dish");
+const settingsRoutes=require("./routes/admin/settings");
+const tableRoutes=require("./routes/admin/table");
 
 //启动主服务器  创建http应用服务器
 var app=express();

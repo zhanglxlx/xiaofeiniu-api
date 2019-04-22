@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="bt1">获取桌台信息</button>
+    <br>
+    <button id="bt2">修改桌台信息</button>
+    <br>
+    
+    <script src="./axios.min.js"></script>
+    <!--这种方式只能是get-->
+    <!--<script src="http://127.0.0.1:8090/admin/category"></script>-->
+    <script>
+        bt1.onclick=function(){
+            axios.get("http://127.0.0.1:8090/admin/table").then((result)=>{
+                console.log("获取全局设置信息")
+                console.log(result.data);
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        //bt2.onclick=function(){
+            //var data={tid: 1, tname: "金镶玉", type: "2人桌", status: 1};
+            //put/delete 请求之前浏览器会先提交一个
+            //预取请求--preflight  request
+            //请求方法为 options 目的是询问服务器是否支持接下来得请求方法
+            //axios.put("http://127.0.0.1:8090/admin/table",data).then((result)=>{
+               // console.log("修改全局信息成功")
+               // console.log(result.data);
+           // }).catch((err)=>{
+            //    console.log(err);
+            //})
+       // }
+    </script>
+</body>
+</html>
+
