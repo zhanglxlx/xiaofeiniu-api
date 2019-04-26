@@ -14,9 +14,9 @@ var router=express.Router();
 router.get("/",(req,res)=>{
     pool.query("SELECT * FROM xfn_category ORDER BY cid",(err,result)=>{
         if(err){throw err};
-        if(result.affectedRows>0){
-            var jsonData=JSON.stringify(result);
-            res.send("doData('+jsonData+')");
+        console.log(result)
+        if(result.length>0){
+            res.send(result);
         }else{
             res.send({code:400,msg:"查询失败"})
         }
@@ -30,12 +30,14 @@ router.get("/",(req,res)=>{
  * 返回值：{code:400,msg:"0 category deleted"}
  */
 router.delete("/:cid",(req,res)=>{
+    console.log(req.params.cid)
     //注意：删除菜品类别钱必须先把属于该类别的菜品的类别编号设置为null
     pool.query("UPDATE xfn_dish SET categoryID=NULL  WHERE categoryID=?",req.params.cid,(err,result)=>{
         if(err){throw err};
         //至此指定类别的菜品已经修改完毕
         pool.query("DELETE FROM xfn_category WHERE cid=?",req.params.cid,(err,result)=>{
             if(err){throw err};
+            console.log(result);
             if(result.affectedRows>0){
                 res.send({code:200,msg:"1 category deleted"})
             }else{
@@ -54,9 +56,9 @@ router.post("/",(req,res)=>{
     pool.query("INSERT INTO xfn_category SET ?",req.body,(err,result)=>{ //注意此处SQL语句的简写
         if(err){throw err};
         if(result.affectedRows>0){
-            res.send({code:200,msg:"1 category added"})
+            res.send({code:200,msg:"1 category added",cid:result.insertId})
         }else{
-            res.send({code:400,msg:"category added"})
+            res.send({code:400,msg:"0 category added"})
         }
 
     })
@@ -75,7 +77,7 @@ router.put('/', (req, res)=>{
     //TODO: 此处可以对数据数据进行验证
     pool.query('UPDATE xfn_category SET ? WHERE cid=?', [data, data.cid], (err, result)=>{
       if(err)throw err;
-      if(result.changedRows>0){  //实际修改了一行
+      if(result.affectedRows>0){  //实际修改了一行
         res.send({code:200, msg: '1 category modified'})
       }else if(result.affectedRows==0){  //影响到0行
         res.send({code:400, msg:'category not exits'})
