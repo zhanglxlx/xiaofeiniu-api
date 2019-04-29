@@ -56,7 +56,7 @@ router.post("/image",upload.single('dishImg'),(req,res)=>{
     //把客户端长传到文件从临时目录转移到永久的图片路劲下
     var uploadsFile=req.file.path;
     //req.file.originalname.substring 原始文件名截取子串
-    var suffix=req.file.originalname.substring( req.file.originalname.lastIndexOf(" . ") );//原始文件名中的后缀部分
+    var suffix=req.file.originalname.substring( req.file.originalname.lastIndexOf(" . ") );//原始文件名中的后缀部分你 吗，
     var newFile=randFileName(suffix);
     fs.rename(uploadsFile,'img/dish/'+newFile,()=>{  //rename 重新命名文件
         res.send({code:200,mdg:"upload success",fileName:newFile })
